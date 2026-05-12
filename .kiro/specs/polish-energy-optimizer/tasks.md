@@ -131,14 +131,14 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Use `scipy.optimize.linprog` or `PuLP` for LP solving
     - _Requirements: 3.1, 3.5, 3.10, 11.2_
 
-  - [ ] 5.2 Write property tests for EV scheduling (Properties 6, 7, 9, 10)
+  - [x] 5.2 Write property tests for EV scheduling (Properties 6, 7, 9, 10)
     - **Property 6: Optymalne okno ładowania EV minimalizuje koszt**
     - **Property 7: Ładowanie nieciągłe vs ciągłe — wybór tańszego**
     - **Property 9: Nieprzekraczanie mocy przyłączeniowej (EV)**
     - **Property 10: Wykrywanie nieosiągalności docelowego SoC**
     - **Validates: Requirements 3.1, 3.5, 3.10, 3.13**
 
-  - [ ] 5.3 Implement ChargerAdapter abstract class and concrete adapters
+  - [x] 5.3 Implement ChargerAdapter abstract class and concrete adapters
     - Implement abstract `ChargerAdapter` with: `start_charging`, `stop_charging`, `get_status`, `get_limits`
     - Implement `OCPPChargerAdapter` (OCPP 1.6/2.0)
     - Implement `TeslaChargerAdapter` (Tesla Wall Connector API)
