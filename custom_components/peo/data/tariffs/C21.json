@@ -1,0 +1,5 @@
+{
+  "tariff_type": "C21",
+  "description": "Taryfa jednostrefowa dla odbiorców przyłączonych do sieci średniego napięcia",
+  "zones": ["jednolita"]
+}

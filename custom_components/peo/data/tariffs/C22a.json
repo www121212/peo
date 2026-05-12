@@ -1,0 +1,5 @@
+{
+  "tariff_type": "C22a",
+  "description": "Taryfa dwustrefowa dla odbiorców średniego napięcia — strefa szczytowa i pozaszczytowa (wariant a)",
+  "zones": ["szczyt", "pozaszczyt"]
+}

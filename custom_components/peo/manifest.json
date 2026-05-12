@@ -1,0 +1,12 @@
+{
+  "domain": "peo",
+  "name": "Polish Energy Optimizer",
+  "version": "0.1.0",
+  "documentation": "https://github.com/wojciech-misiaszek/ha-peo",
+  "issue_tracker": "https://github.com/wojciech-misiaszek/ha-peo/issues",
+  "dependencies": [],
+  "codeowners": ["@wojciech-misiaszek"],
+  "iot_class": "cloud_polling",
+  "homeassistant": "2024.1.0",
+  "requirements": ["aiohttp>=3.9.0"]
+}

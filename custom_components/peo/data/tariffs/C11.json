@@ -1,0 +1,5 @@
+{
+  "tariff_type": "C11",
+  "description": "Taryfa jednostrefowa dla odbiorców komercyjnych — jedna stawka całodobowa",
+  "zones": ["jednolita"]
+}

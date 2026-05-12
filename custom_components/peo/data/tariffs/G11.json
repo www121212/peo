@@ -1,0 +1,5 @@
+{
+  "tariff_type": "G11",
+  "description": "Taryfa jednostrefowa dla gospodarstw domowych — jedna stawka całodobowa",
+  "zones": ["jednolita"]
+}

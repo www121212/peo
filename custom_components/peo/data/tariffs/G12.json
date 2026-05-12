@@ -1,0 +1,5 @@
+{
+  "tariff_type": "G12",
+  "description": "Taryfa dwustrefowa dla gospodarstw domowych — strefa szczytowa i pozaszczytowa",
+  "zones": ["szczyt", "pozaszczyt"]
+}

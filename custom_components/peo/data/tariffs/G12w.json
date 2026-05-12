@@ -1,0 +1,5 @@
+{
+  "tariff_type": "G12w",
+  "description": "Taryfa dwustrefowa weekendowa dla gospodarstw domowych — szczyt, pozaszczyt oraz cały weekend w strefie pozaszczytowej",
+  "zones": ["szczyt", "pozaszczyt", "weekend"]
+}

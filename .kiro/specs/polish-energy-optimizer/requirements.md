@@ -20,7 +20,7 @@ PEO wypełnia zidentyfikowane luki rynkowe: istniejące rozwiązania (RCE PSE, E
 - **PSE**: Polskie Sieci Elektroenergetyczne — operator systemu przesyłowego
 - **OSD**: Operator Systemu Dystrybucyjnego (Tauron, PGE, Enea, Energa, innogy/Stoen)
 - **OZE**: Odnawialne Źródła Energii — składnik opłaty w taryfie
-- **Taryfa**: Struktura cenowa energii (G11, G12, G12w, G12r, C11, C12a, C12b, C21, C22a, C22b, C23)
+- **Taryfa**: Struktura cenowa energii (G11, G12, G12w, G12r, G13, C11, C12a, C12b, C21, C22a, C22b, C23)
 - **Strefa_Czasowa**: Okres obowiązywania danej stawki w taryfie wielostrefowej (szczyt, pozaszczyt, noc)
 - **OCPP**: Open Charge Point Protocol — otwarty protokół komunikacji z ładowarkami EV
 - **Config_Flow**: Mechanizm konfiguracji integracji Home Assistant przez interfejs graficzny
@@ -54,7 +54,7 @@ PEO wypełnia zidentyfikowane luki rynkowe: istniejące rozwiązania (RCE PSE, E
 
 #### Kryteria Akceptacji
 
-1. THE Kalkulator_Taryf SHALL obliczać koszt kWh dla taryf: G11, G12, G12w, G12r, C11, C12a, C12b, C21, C22a, C22b, C23, uwzględniając definicje stref czasowych specyficzne dla każdego typu taryfy (G11/C11: jedna strefa, G12: szczyt/pozaszczyt, G12w: szczyt/pozaszczyt/weekend, G12r: strefy dynamiczne)
+1. THE Kalkulator_Taryf SHALL obliczać koszt kWh dla taryf: G11, G12, G12w, G12r, G13, C11, C12a, C12b, C21, C22a, C22b, C23, uwzględniając definicje stref czasowych specyficzne dla każdego typu taryfy (G11/C11: jedna strefa, G12: szczyt/pozaszczyt, G12w: szczyt/pozaszczyt/weekend, G12r: strefy dynamiczne, G13: szczyt poranny/szczyt popołudniowy/pozaszczyt)
 2. THE Kalkulator_Taryf SHALL obliczać koszt kWh z wykorzystaniem stawek dystrybucyjnych specyficznych dla operatorów OSD: Tauron Dystrybucja, PGE Dystrybucja, Enea Operator, Energa Operator, innogy Stoen Operator, w tym godzin obowiązywania stref czasowych zdefiniowanych przez każdego operatora
 3. WHEN użytkownik wybierze taryfę i operatora OSD, THE Kalkulator_Taryf SHALL obliczać pełny koszt kWh z dokładnością do 4 miejsc po przecinku (PLN/kWh) uwzględniając: cenę energii (RCE lub stałą), opłatę dystrybucyjną zmienną, opłatę przejściową, opłatę OZE, opłatę mocową i opłatę kogeneracyjną
 4. WHILE obowiązuje dana strefa czasowa taryfy wielostrefowej (szczyt, pozaszczyt, noc lub weekend — zależnie od typu taryfy), THE Kalkulator_Taryf SHALL stosować stawki przypisane do aktualnie obowiązującej strefy danego operatora OSD
@@ -123,7 +123,7 @@ PEO wypełnia zidentyfikowane luki rynkowe: istniejące rozwiązania (RCE PSE, E
 
 #### Kryteria Akceptacji
 
-1. THE Analizator_Taryf SHALL obliczać hipotetyczny koszt energii z ostatnich 30 dni dla każdej dostępnej taryfy (G11, G12, G12w, G12r) na podstawie rzeczywistego godzinowego profilu zużycia użytkownika pobranego z sensora energii Home Assistant
+1. THE Analizator_Taryf SHALL obliczać hipotetyczny koszt energii z ostatnich 30 dni dla każdej dostępnej taryfy (G11, G12, G12w, G12r, G13) na podstawie rzeczywistego godzinowego profilu zużycia użytkownika pobranego z sensora energii Home Assistant
 2. WHEN analiza porównawcza zostanie zakończona, THE Analizator_Taryf SHALL wyświetlić ranking taryf od najtańszej do najdroższej jako atrybut sensora, z kwotą różnicy w PLN względem aktualnie wybranej taryfy użytkownika
 3. THE Analizator_Taryf SHALL udostępniać sensor z rekomendowaną taryfą i szacowaną miesięczną oszczędnością w PLN względem aktualnie wybranej taryfy użytkownika
 4. IF różnica kosztów między aktualną taryfą a najtańszą przekracza 10% kosztu miesięcznego, THEN THE Analizator_Taryf SHALL wygenerować powiadomienie z rekomendacją zmiany taryfy nie częściej niż raz na 7 dni

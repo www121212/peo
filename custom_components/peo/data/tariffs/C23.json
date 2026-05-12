@@ -1,0 +1,5 @@
+{
+  "tariff_type": "C23",
+  "description": "Taryfa trzystrefowa dla odbiorców średniego napięcia — strefa szczytowa, pozaszczytowa i nocna",
+  "zones": ["szczyt", "pozaszczyt", "noc"]
+}

@@ -1,0 +1,5 @@
+{
+  "tariff_type": "G12r",
+  "description": "Taryfa dwustrefowa ruchoma dla gospodarstw domowych — strefy dynamiczne zależne od operatora OSD",
+  "zones": ["szczyt", "pozaszczyt"]
+}

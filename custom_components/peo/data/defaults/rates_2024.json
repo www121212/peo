@@ -1,0 +1,1062 @@
+{
+  "version": "2024",
+  "description": "Domyslne stawki taryfowe zatwierdzone przez URE na rok 2024 (PLN/kWh). Oplaty wspolne (przejsciowa, OZE, mocowa, kogeneracyjna) sa jednakowe dla wszystkich operatorow.",
+  "common_fees": {
+    "transition_fee": "0.0009",
+    "oze_fee": "0.0027",
+    "capacity_fee": "0.0762",
+    "cogeneration_fee": "0.0058"
+  },
+  "operators": {
+    "tauron": {
+      "G11": {
+        "jednolita": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.2018",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12": {
+        "szczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.2596",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.0756",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12w": {
+        "szczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.2596",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.0756",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12r": {
+        "szczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.2596",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.0756",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G13": {
+        "szczyt_poranny": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.2876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "szczyt_popołudniowy": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.2876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6221",
+          "distribution_variable": "0.0654",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C11": {
+        "jednolita": {
+          "energy_price": "0.5765",
+          "distribution_variable": "0.1876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12a": {
+        "szczyt": {
+          "energy_price": "0.5765",
+          "distribution_variable": "0.2413",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5765",
+          "distribution_variable": "0.0702",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12b": {
+        "szczyt": {
+          "energy_price": "0.5765",
+          "distribution_variable": "0.2413",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5765",
+          "distribution_variable": "0.0702",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C21": {
+        "jednolita": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.1154",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22a": {
+        "szczyt": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.1486",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.0432",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22b": {
+        "szczyt": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.1486",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.0432",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C23": {
+        "szczyt": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.1876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.0702",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "noc": {
+          "energy_price": "0.4987",
+          "distribution_variable": "0.0321",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      }
+    },
+    "pge": {
+      "G11": {
+        "jednolita": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.2085",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12": {
+        "szczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.2684",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.0781",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12w": {
+        "szczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.2684",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.0781",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12r": {
+        "szczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.2684",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.0781",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G13": {
+        "szczyt_poranny": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.2972",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "szczyt_popołudniowy": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.2972",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6195",
+          "distribution_variable": "0.0675",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C11": {
+        "jednolita": {
+          "energy_price": "0.5738",
+          "distribution_variable": "0.1938",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12a": {
+        "szczyt": {
+          "energy_price": "0.5738",
+          "distribution_variable": "0.2495",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5738",
+          "distribution_variable": "0.0726",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12b": {
+        "szczyt": {
+          "energy_price": "0.5738",
+          "distribution_variable": "0.2495",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5738",
+          "distribution_variable": "0.0726",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C21": {
+        "jednolita": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.1192",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22a": {
+        "szczyt": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.1535",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.0447",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22b": {
+        "szczyt": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.1535",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.0447",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C23": {
+        "szczyt": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.1938",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.0726",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "noc": {
+          "energy_price": "0.4952",
+          "distribution_variable": "0.0332",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      }
+    },
+    "enea": {
+      "G11": {
+        "jednolita": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.1953",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12": {
+        "szczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.2515",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.0732",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12w": {
+        "szczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.2515",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.0732",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12r": {
+        "szczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.2515",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.0732",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G13": {
+        "szczyt_poranny": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.2784",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "szczyt_popołudniowy": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.2784",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6198",
+          "distribution_variable": "0.0632",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C11": {
+        "jednolita": {
+          "energy_price": "0.5712",
+          "distribution_variable": "0.1815",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12a": {
+        "szczyt": {
+          "energy_price": "0.5712",
+          "distribution_variable": "0.2337",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5712",
+          "distribution_variable": "0.0680",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12b": {
+        "szczyt": {
+          "energy_price": "0.5712",
+          "distribution_variable": "0.2337",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5712",
+          "distribution_variable": "0.0680",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C21": {
+        "jednolita": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.1117",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22a": {
+        "szczyt": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.1438",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.0418",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22b": {
+        "szczyt": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.1438",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.0418",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C23": {
+        "szczyt": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.1815",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.0680",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "noc": {
+          "energy_price": "0.4923",
+          "distribution_variable": "0.0311",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      }
+    },
+    "energa": {
+      "G11": {
+        "jednolita": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.2142",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12": {
+        "szczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.2758",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.0803",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12w": {
+        "szczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.2758",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.0803",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12r": {
+        "szczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.2758",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.0803",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G13": {
+        "szczyt_poranny": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.3052",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "szczyt_popołudniowy": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.3052",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6245",
+          "distribution_variable": "0.0694",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C11": {
+        "jednolita": {
+          "energy_price": "0.5789",
+          "distribution_variable": "0.1991",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12a": {
+        "szczyt": {
+          "energy_price": "0.5789",
+          "distribution_variable": "0.2564",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5789",
+          "distribution_variable": "0.0746",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12b": {
+        "szczyt": {
+          "energy_price": "0.5789",
+          "distribution_variable": "0.2564",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5789",
+          "distribution_variable": "0.0746",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C21": {
+        "jednolita": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.1225",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22a": {
+        "szczyt": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.1578",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.0459",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22b": {
+        "szczyt": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.1578",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.0459",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C23": {
+        "szczyt": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.1991",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.0746",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "noc": {
+          "energy_price": "0.5011",
+          "distribution_variable": "0.0341",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      }
+    },
+    "innogy_stoen": {
+      "G11": {
+        "jednolita": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.2234",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12": {
+        "szczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.2876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.0837",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12w": {
+        "szczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.2876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.0837",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G12r": {
+        "szczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.2876",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.0837",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "G13": {
+        "szczyt_poranny": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.3182",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "szczyt_popołudniowy": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.3182",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.6312",
+          "distribution_variable": "0.0723",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C11": {
+        "jednolita": {
+          "energy_price": "0.5834",
+          "distribution_variable": "0.2076",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12a": {
+        "szczyt": {
+          "energy_price": "0.5834",
+          "distribution_variable": "0.2673",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5834",
+          "distribution_variable": "0.0778",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C12b": {
+        "szczyt": {
+          "energy_price": "0.5834",
+          "distribution_variable": "0.2673",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5834",
+          "distribution_variable": "0.0778",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C21": {
+        "jednolita": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.1278",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22a": {
+        "szczyt": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.1645",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.0479",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C22b": {
+        "szczyt": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.1645",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.0479",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      },
+      "C23": {
+        "szczyt": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.2076",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "pozaszczyt": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.0778",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        },
+        "noc": {
+          "energy_price": "0.5045",
+          "distribution_variable": "0.0356",
+          "transition_fee": "0.0009",
+          "oze_fee": "0.0027",
+          "capacity_fee": "0.0762",
+          "cogeneration_fee": "0.0058"
+        }
+      }
+    }
+  }
+}

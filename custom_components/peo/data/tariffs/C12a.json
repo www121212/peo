@@ -1,0 +1,5 @@
+{
+  "tariff_type": "C12a",
+  "description": "Taryfa dwustrefowa dla odbiorców komercyjnych — strefa szczytowa i pozaszczytowa (wariant a)",
+  "zones": ["szczyt", "pozaszczyt"]
+}
