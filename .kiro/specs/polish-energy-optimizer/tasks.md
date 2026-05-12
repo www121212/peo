@@ -147,11 +147,11 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Retry logic: 3 retries with 10s intervals on command failure
     - _Requirements: 3.2, 3.6, 9.3_
 
-  - [ ] 5.4 Write property test for charger power limits (Property 22)
+  - [x] 5.4 Write property test for charger power limits (Property 22)
     - **Property 22: Respektowanie limitów mocy ładowarki**
     - **Validates: Requirements 9.3**
 
-  - [ ] 5.5 Implement EVScheduler and ChargingSessionManager
+  - [x] 5.5 Implement EVScheduler and ChargingSessionManager
     - Implement `calculate_schedule()` — single vehicle optimal schedule
     - Implement `calculate_multi_vehicle_schedule()` — multi-vehicle with priorities
     - Implement `ChargingSessionManager`: start/stop sessions, monitor SoC (every 60s), handle manual charging
