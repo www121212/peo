@@ -162,13 +162,13 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Support 3 strategies per vehicle: "najtańsze_okna", "gotowy_do_godziny", "tylko_nadwyżka_PV"
     - _Requirements: 3.1, 3.3, 3.4, 3.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 11.1, 11.2, 11.3, 11.4_
 
-  - [ ] 5.6 Write property tests for charging stop condition and multi-vehicle (Properties 8, 28, 29)
+  - [x] 5.6 Write property tests for charging stop condition and multi-vehicle (Properties 8, 28, 29)
     - **Property 8: Warunek zatrzymania ładowania**
     - **Property 28: Przydział mocy wielu pojazdom wg priorytetów**
     - **Property 29: Strategia ładowania per pojazd**
     - **Validates: Requirements 3.4, 11.2, 11.3, 11.4, 11.7**
 
-  - [ ] 5.7 Implement EV safety features
+  - [x] 5.7 Implement EV safety features
     - Respect charger power limits (max current A, max power kW) — never exceed
     - Pause charging when battery temperature exceeds safety threshold
     - Resume when temperature drops below threshold
@@ -180,7 +180,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 7. Implement Menedżer_Obciążeń (Load Manager)
-  - [ ] 7.1 Implement LoadManager core logic
+  - [x] 7.1 Implement LoadManager core logic
     - Implement `evaluate_loads(current_cost)` — compare cost against thresholds, decide on/off
     - Implement `ensure_minimum_runtime(load, remaining_hours)` — select cheapest remaining hours
     - Implement `check_power_budget(loads_to_activate, current_building_load)` — filter by priority and grid limit
