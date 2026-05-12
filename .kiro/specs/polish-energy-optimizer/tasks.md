@@ -102,7 +102,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Implement `load_default_rates(operator, tariff) -> TariffRates` — load URE defaults
     - _Requirements: 2.1, 2.2, 2.8_
 
-  - [ ] 4.2 Implement TariffCalculator core logic
+  - [x] 4.2 Implement TariffCalculator core logic
     - Implement `get_zone_for_time(timestamp, tariff, operator) -> TimeZoneName` — determine active zone
     - Implement `calculate_cost(timestamp, tariff, operator, rates, rce_price) -> Decimal` — full cost with 4 decimal places
     - Cost formula: energy + distribution_variable + transition_fee + oze_fee + capacity_fee + cogeneration_fee
