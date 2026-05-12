@@ -79,11 +79,11 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Use Home Assistant `Store` helper for persistent storage
     - _Requirements: 1.6_
 
-  - [ ] 2.5 Write property test for price history retention (Property 3)
+  - [x] 2.5 Write property test for price history retention (Property 3)
     - **Property 3: Retencja historii cen — 30 dni**
     - **Validates: Requirements 1.6**
 
-  - [ ] 2.6 Implement PriceDataCoordinator
+  - [x] 2.6 Implement PriceDataCoordinator
     - Extend `DataUpdateCoordinator` with 60-minute update interval
     - Implement `_async_update_data()` — fetch, validate, store, fire event
     - Handle "oczekiwanie" status after 13:30 when tomorrow prices unavailable (retry every 15 min)
@@ -96,7 +96,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 4. Implement Kalkulator_Taryf (Tariff Calculator)
-  - [ ] 4.1 Implement TariffDefinitionLoader
+  - [x] 4.1 Implement TariffDefinitionLoader
     - Implement `load_tariff(tariff_type) -> TariffDefinition` — load from JSON
     - Implement `load_osd_zones(operator) -> OSDZoneDefinition` — load OSD-specific zone hours
     - Implement `load_default_rates(operator, tariff) -> TariffRates` — load URE defaults
