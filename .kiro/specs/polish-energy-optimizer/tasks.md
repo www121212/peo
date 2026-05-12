@@ -110,12 +110,12 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Implement `get_hourly_costs(start, hours=24) -> list[HourlyCost]`
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-  - [ ] 4.3 Write property tests for tariff calculation (Properties 4, 5)
+  - [x] 4.3 Write property tests for tariff calculation (Properties 4, 5)
     - **Property 4: Obliczanie kosztu kWh dla taryf**
     - **Property 5: Walidacja konfiguracji taryfa/OSD**
     - **Validates: Requirements 2.1, 2.2, 2.3, 2.4, 2.9**
 
-  - [ ] 4.4 Implement TariffDataCoordinator
+  - [x] 4.4 Implement TariffDataCoordinator
     - Extend `DataUpdateCoordinator` with 15-minute update interval
     - Expose sensor: current cost (PLN/kWh, 4 decimal places) with zone name attribute
     - Update sensor within 10 seconds of zone change
@@ -123,7 +123,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - _Requirements: 2.5, 2.6, 2.7_
 
 - [ ] 5. Implement Harmonogramownik_EV (EV Scheduler)
-  - [ ] 5.1 Implement ScheduleEngine (LP Solver)
+  - [x] 5.1 Implement ScheduleEngine (LP Solver)
     - Implement `solve_minimum_cost_schedule()` — minimize Σ(cost×power×duration) subject to constraints
     - Constraints: required energy, charger max power, grid limit, min charging power (or 0), time windows
     - Support discontinuous charging windows
