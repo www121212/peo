@@ -1,7 +1,7 @@
 # Polish Energy Optimizer (PEO)
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/www121212/peo?include_prereleases)](https://github.com/www121212/peo/releases)
+[![GitHub Release](https://img.shields.io/badge/release-v0.1.0-blue)](https://github.com/www121212/peo/releases/tag/v0.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![HA 2024.1+](https://img.shields.io/badge/Home%20Assistant-2024.1+-blue.svg)](https://www.home-assistant.io/)
