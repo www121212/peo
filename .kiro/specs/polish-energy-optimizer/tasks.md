@@ -322,7 +322,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - _Requirements: 7.2_
 
 - [ ] 13. Implement integration lifecycle and HA ecosystem integration
-  - [ ] 13.1 Implement async_setup_entry, async_unload_entry, async_remove_entry
+  - [x] 13.1 Implement async_setup_entry, async_unload_entry, async_remove_entry
     - `async_setup_entry`: register coordinators, platforms, event listeners (must complete within 30s)
     - `async_unload_entry`: cancel listeners, close HTTP sessions, remove coordinator references (within 10s)
     - `async_remove_entry`: remove persistent data
@@ -330,17 +330,17 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Delegate I/O operations >100ms to executor via `hass.async_add_executor_job`
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.12_
 
-  - [ ] 13.2 Implement async_migrate_entry for config migration
+  - [x] 13.2 Implement async_migrate_entry for config migration
     - Implement VERSION tracking with increment on schema changes
     - Preserve all user configuration values during migration
     - Verify schema compatibility on load after HACS update
     - _Requirements: 8.10, 8.11_
 
-  - [ ] 13.3 Write property test for config migration (Property 21)
+  - [x] 13.3 Write property test for config migration (Property 21)
     - **Property 21: Migracja konfiguracji zachowuje dane**
     - **Validates: Requirements 8.10**
 
-  - [ ] 13.4 Implement HA services registration
+  - [x] 13.4 Implement HA services registration
     - Register services: `peo.start_ev_charging`, `peo.stop_ev_charging`, `peo.set_load_threshold`, `peo.force_load_on`, `peo.force_load_off`, `peo.recalculate_schedule`
     - Define and validate parameter schemas for each service
     - `recalculate_schedule`: recalculate all modules within 30s, fire `peo_schedule_updated`
@@ -352,7 +352,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - **Property 31: Walidacja parametrów usług HA**
     - **Validates: Requirements 12.2, 12.4**
 
-  - [ ] 13.6 Implement HA events and binary sensors
+  - [x] 13.6 Implement HA events and binary sensors
     - Fire events: `peo_charging_started`, `peo_charging_completed`, `peo_load_shifted`, `peo_price_threshold_crossed`, `peo_schedule_updated` — each with timestamp, entity_id, context data
     - Binary sensors: cheap window (ON when price < threshold), EV charging active, PV surplus active
     - Sensors with attributes: hourly_prices (24h), schedule (JSON), last_updated
