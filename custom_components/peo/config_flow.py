@@ -24,6 +24,7 @@ import voluptuous as vol
 
 from homeassistant.core import HomeAssistant
 from homeassistant import config_entries
+import homeassistant.helpers.config_validation as cv
 
 from .const import (
     DOMAIN,
@@ -375,10 +376,14 @@ class PEOConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 return await self.async_step_tariff()
 
         schema = vol.Schema({
-            vol.Required("modules_enabled", default=[MODULE_PRICES, MODULE_TARIFF]): vol.All(
-                list,
-                vol.Length(min=1, msg="Musisz wybrać co najmniej jeden moduł"),
-            ),
+            vol.Required("modules_enabled", default=[MODULE_PRICES, MODULE_TARIFF]): cv.multi_select({
+                MODULE_PRICES: "Ceny energii (RCE PSE)",
+                MODULE_TARIFF: "Kalkulator taryf",
+                MODULE_EV: "Harmonogramownik EV",
+                MODULE_LOADS: "Menedżer obciążeń",
+                MODULE_PV: "Optymalizator PV",
+                MODULE_ANALYZER: "Analizator taryf",
+            }),
             vol.Optional("quick_setup", default=False): bool,
         })
 
