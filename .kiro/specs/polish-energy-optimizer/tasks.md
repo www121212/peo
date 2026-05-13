@@ -188,14 +188,14 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Send on/off commands within 30s of price change detection
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.6_
 
-  - [ ] 7.2 Write property tests for load management (Properties 11, 12, 13, 14)
+  - [x] 7.2 Write property tests for load management (Properties 11, 12, 13, 14)
     - **Property 11: Przełączanie odbiorników wg progów cenowych**
     - **Property 12: Zapewnienie minimalnej dziennej pracy odbiornika**
     - **Property 13: Blokada po osiągnięciu maksymalnej dziennej pracy**
     - **Property 14: Priorytetyzacja mocy — odbiorniki**
     - **Validates: Requirements 4.2, 4.3, 4.4, 4.5, 4.6**
 
-  - [ ] 7.3 Implement LoadStateTracker
+  - [x] 7.3 Implement LoadStateTracker
     - Track on/off events per load with timestamps
     - Calculate daily runtime with 0.1h resolution
     - Block loads after max daily hours reached (until 00:00 next day)
@@ -205,7 +205,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - _Requirements: 4.5, 4.7, 4.8, 4.9_
 
 - [ ] 8. Implement Optymalizator_PV (PV Optimizer)
-  - [ ] 8.1 Implement SolarForecastClient
+  - [x] 8.1 Implement SolarForecastClient
     - Implement multi-provider support: Solcast, Forecast.Solar, OpenWeatherMap Solar
     - Fetch 24h PV forecast every 60 minutes
     - Handle provider unavailability >180min: fallback to last forecast, status "prognoza nieaktualna", notify user
