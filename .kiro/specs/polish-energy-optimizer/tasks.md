@@ -212,7 +212,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Integrate RateLimiter
     - _Requirements: 5.1, 5.9_
 
-  - [ ] 8.2 Implement PVOptimizer core logic
+  - [x] 8.2 Implement PVOptimizer core logic
     - Implement `calculate_surplus_profile(pv_forecast, avg_consumption)` — production minus 7-day average hourly consumption
     - Implement `determine_battery_mode(grid_price, degradation_cost, pv_available, current_soc, min_soc)` — charge/discharge/standby
     - Implement `calculate_battery_strategy(pv_forecast, costs, battery, consumption_profile)` — 24h strategy
@@ -221,21 +221,21 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Enforce minimum safety SoC (default 10%, configurable 5–30%) — switch to standby at threshold
     - _Requirements: 5.2, 5.3, 5.4, 5.5, 5.6, 5.10_
 
-  - [ ] 8.3 Write property tests for PV optimization (Properties 15, 16, 17, 18)
+  - [x] 8.3 Write property tests for PV optimization (Properties 15, 16, 17, 18)
     - **Property 15: Obliczanie profilu nadwyżki PV**
     - **Property 16: Decyzja o trybie baterii**
     - **Property 17: Ograniczenie nocnego ładowania przy dużej prognozie PV**
     - **Property 18: Bezpieczeństwo minimalnego SoC baterii**
     - **Validates: Requirements 5.2, 5.3, 5.4, 5.6, 5.10**
 
-  - [ ] 8.4 Implement PVForecastCoordinator and inverter communication
+  - [x] 8.4 Implement PVForecastCoordinator and inverter communication
     - Extend `DataUpdateCoordinator` with 60-minute interval
     - Expose sensors: forecast PV production (today/tomorrow kWh), forecast autoconsumption (today kWh), recommended battery mode, estimated daily savings (PLN)
     - Support inverter communication via HA integrations: SolarEdge, Huawei Solar, GoodWe, Fronius, SMA
     - _Requirements: 5.7, 5.8_
 
 - [ ] 9. Implement Analizator_Taryf (Tariff Analyzer)
-  - [ ] 9.1 Implement TariffAnalyzer
+  - [x] 9.1 Implement TariffAnalyzer
     - Implement `analyze_tariffs(consumption_profile, current_tariff, operator)` — compare costs for G11, G12, G12w, G12r, G13
     - Implement `calculate_hypothetical_cost(hourly_consumption, tariff, operator, rates)` — full cost per tariff
     - Include all cost components: energy + distribution + transition + OZE + capacity + cogeneration
