@@ -1,0 +1,293 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Polish Energy Optimizer",
+        "description": "Wybierz moduły do aktywacji. Możesz również użyć szybkiej konfiguracji z domyślnymi wartościami.",
+        "data": {
+          "modules_enabled": "Moduły do aktywacji",
+          "quick_setup": "Szybka konfiguracja (G12 + EV + bojler CWU)"
+        }
+      },
+      "tariff": {
+        "title": "Konfiguracja taryfy",
+        "description": "Wybierz operatora OSD i typ taryfy. Stawki zostaną automatycznie załadowane z domyślnych wartości URE. Możesz je zmienić ręcznie.",
+        "data": {
+          "osd_operator": "Operator OSD",
+          "tariff_type": "Typ taryfy",
+          "energy_price": "Cena energii (PLN/kWh)",
+          "distribution_variable": "Opłata dystrybucyjna zmienna (PLN/kWh)",
+          "transition_fee": "Opłata przejściowa (PLN/kWh)",
+          "oze_fee": "Opłata OZE (PLN/kWh)",
+          "capacity_fee": "Opłata mocowa (PLN/kWh)",
+          "cogeneration_fee": "Opłata kogeneracyjna (PLN/kWh)"
+        }
+      },
+      "ev": {
+        "title": "Konfiguracja pojazdu elektrycznego",
+        "description": "Skonfiguruj pojazd elektryczny i ładowarkę. Możesz pominąć ten krok jeśli nie chcesz konfigurować EV.",
+        "data": {
+          "skip": "Pomiń konfigurację EV",
+          "vehicle_name": "Nazwa pojazdu",
+          "battery_capacity_kwh": "Pojemność baterii (kWh)",
+          "max_charging_power_kw": "Maksymalna moc ładowania (kW)",
+          "min_charging_power_kw": "Minimalna moc ładowania (kW)",
+          "soc_entity_id": "Encja SoC pojazdu",
+          "target_soc": "Docelowy poziom naładowania (%)",
+          "strategy": "Strategia ładowania",
+          "charger_protocol": "Protokół ładowarki",
+          "charger_host": "Adres IP ładowarki",
+          "charger_api_key": "Klucz API ładowarki",
+          "grid_limit_kw": "Moc przyłączeniowa budynku (kW)"
+        }
+      },
+      "loads": {
+        "title": "Konfiguracja odbiorników odraczalnych",
+        "description": "Dodaj odbiornik odraczalny. Możesz pominąć ten krok lub dodać kolejne odbiorniki.",
+        "data": {
+          "skip": "Pomiń konfigurację odbiorników",
+          "load_name": "Nazwa odbiornika",
+          "entity_id": "Encja Home Assistant",
+          "threshold_on": "Próg cenowy włączenia (PLN/kWh)",
+          "threshold_off": "Próg cenowy wyłączenia (PLN/kWh)",
+          "min_daily_hours": "Minimalna dzienna praca (godziny)",
+          "max_daily_hours": "Maksymalna dzienna praca (godziny)",
+          "allowed_start": "Dozwolony start (HH:MM)",
+          "allowed_end": "Dozwolony koniec (HH:MM)",
+          "priority": "Priorytet (1 = najwyższy)",
+          "power_w": "Pobór mocy (W)",
+          "failsafe_state": "Stan awaryjny (włączony)",
+          "add_another": "Dodaj kolejny odbiornik"
+        }
+      },
+      "pv": {
+        "title": "Konfiguracja fotowoltaiki",
+        "description": "Skonfiguruj dostawcę prognoz solarnych i opcjonalnie magazyn energii. Możesz pominąć ten krok.",
+        "data": {
+          "skip": "Pomiń konfigurację PV",
+          "solar_provider": "Dostawca prognoz solarnych",
+          "solar_api_key": "Klucz API",
+          "capacity_kwp": "Moc instalacji PV (kWp)",
+          "battery_capacity_kwh": "Pojemność baterii (kWh)",
+          "min_soc_percent": "Minimalny SoC bezpieczeństwa (%)",
+          "degradation_cost": "Koszt degradacji baterii (PLN/kWh)",
+          "inverter_entity": "Encja inwertera",
+          "battery_soc_entity": "Encja SoC baterii"
+        }
+      },
+      "quick_setup": {
+        "title": "Szybka konfiguracja",
+        "description": "Szybka konfiguracja z domyślnymi wartościami: taryfa G12 (Tauron), pojazd EV, bojler CWU. Podaj tylko encję SoC pojazdu — resztę można zmienić później.",
+        "data": {
+          "vehicle_name": "Nazwa pojazdu",
+          "soc_entity_id": "Encja SoC pojazdu"
+        }
+      }
+    },
+    "error": {
+      "modules_enabled": "Musisz wybrać co najmniej jeden moduł",
+      "osd_operator_required": "Operator OSD jest wymagany",
+      "osd_operator_invalid": "Nieznany operator OSD",
+      "tariff_type_required": "Typ taryfy jest wymagany",
+      "tariff_type_invalid": "Nieznany typ taryfy",
+      "energy_price_invalid": "Nieprawidłowa wartość ceny energii",
+      "energy_price_range": "Cena energii musi być w zakresie 0–5 PLN/kWh",
+      "distribution_variable_invalid": "Nieprawidłowa wartość opłaty dystrybucyjnej",
+      "distribution_variable_range": "Opłata dystrybucyjna musi być w zakresie 0–5 PLN/kWh",
+      "transition_fee_invalid": "Nieprawidłowa wartość opłaty przejściowej",
+      "transition_fee_range": "Opłata przejściowa musi być w zakresie 0–5 PLN/kWh",
+      "oze_fee_invalid": "Nieprawidłowa wartość opłaty OZE",
+      "oze_fee_range": "Opłata OZE musi być w zakresie 0–5 PLN/kWh",
+      "capacity_fee_invalid": "Nieprawidłowa wartość opłaty mocowej",
+      "capacity_fee_range": "Opłata mocowa musi być w zakresie 0–5 PLN/kWh",
+      "cogeneration_fee_invalid": "Nieprawidłowa wartość opłaty kogeneracyjnej",
+      "cogeneration_fee_range": "Opłata kogeneracyjna musi być w zakresie 0–5 PLN/kWh",
+      "vehicle_name_required": "Nazwa pojazdu jest wymagana",
+      "battery_capacity_range": "Pojemność baterii musi być w zakresie 0.1–200 kWh",
+      "battery_capacity_invalid": "Nieprawidłowa wartość pojemności baterii",
+      "max_charging_power_range": "Moc ładowania musi być w zakresie 0–100 kW",
+      "max_charging_power_invalid": "Nieprawidłowa wartość mocy ładowania",
+      "target_soc_range": "Docelowy SoC musi być w zakresie 10–100%",
+      "target_soc_invalid": "Nieprawidłowa wartość docelowego SoC",
+      "soc_entity_required": "Encja SoC pojazdu jest wymagana",
+      "load_name_required": "Nazwa odbiornika jest wymagana",
+      "entity_id_required": "Encja Home Assistant jest wymagana",
+      "threshold_on_range": "Próg włączenia musi być w zakresie 0–5 PLN/kWh",
+      "threshold_on_invalid": "Nieprawidłowa wartość progu włączenia",
+      "threshold_off_range": "Próg wyłączenia musi być w zakresie 0–5 PLN/kWh",
+      "threshold_off_invalid": "Nieprawidłowa wartość progu wyłączenia",
+      "min_daily_hours_range": "Minimalna dzienna praca musi być w zakresie 0.5–24 godzin",
+      "min_daily_hours_invalid": "Nieprawidłowa wartość minimalnej pracy",
+      "max_daily_hours_range": "Maksymalna dzienna praca musi być w zakresie 0.5–24 godzin",
+      "max_daily_hours_invalid": "Nieprawidłowa wartość maksymalnej pracy",
+      "power_w_range": "Pobór mocy musi być w zakresie 1–100000 W",
+      "power_w_invalid": "Nieprawidłowa wartość poboru mocy",
+      "max_loads_reached": "Osiągnięto maksymalną liczbę odbiorników",
+      "solar_provider_required": "Dostawca prognoz solarnych jest wymagany",
+      "solar_provider_invalid": "Nieznany dostawca prognoz solarnych",
+      "solar_api_key_required": "Klucz API jest wymagany",
+      "pv_battery_capacity_range": "Pojemność baterii musi być w zakresie 0–500 kWh",
+      "pv_battery_capacity_invalid": "Nieprawidłowa wartość pojemności baterii",
+      "min_soc_percent_range": "Minimalny SoC bezpieczeństwa musi być w zakresie 5–30%",
+      "min_soc_percent_invalid": "Nieprawidłowa wartość minimalnego SoC",
+      "grid_limit_range": "Moc przyłączeniowa musi być w zakresie 0.1–100 kW",
+      "grid_limit_invalid": "Nieprawidłowa wartość mocy przyłączeniowej"
+    },
+    "abort": {
+      "already_configured": "Integracja jest już skonfigurowana",
+      "unknown_error": "Wystąpił nieznany błąd"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Rekonfiguracja PEO",
+        "description": "Wybierz moduł do rekonfiguracji. Zmiany zostaną zastosowane bez konieczności przeładowania integracji.",
+        "data": {
+          "module": "Moduł do rekonfiguracji"
+        }
+      },
+      "tariff_rates": {
+        "title": "Stawki taryfowe",
+        "description": "Zaktualizuj składniki stawki taryfowej (PLN/kWh). Zmiany zostaną zastosowane natychmiast.",
+        "data": {
+          "energy_price": "Cena energii (PLN/kWh)",
+          "distribution_variable": "Opłata dystrybucyjna zmienna (PLN/kWh)",
+          "transition_fee": "Opłata przejściowa (PLN/kWh)",
+          "oze_fee": "Opłata OZE (PLN/kWh)",
+          "capacity_fee": "Opłata mocowa (PLN/kWh)",
+          "cogeneration_fee": "Opłata kogeneracyjna (PLN/kWh)"
+        }
+      },
+      "ev_config": {
+        "title": "Konfiguracja EV",
+        "description": "Zaktualizuj parametry pojazdu elektrycznego. Zmiany zostaną zastosowane bez przeładowania integracji.",
+        "data": {
+          "vehicle_name": "Nazwa pojazdu",
+          "max_charging_power_kw": "Maksymalna moc ładowania (kW)",
+          "min_charging_power_kw": "Minimalna moc ładowania (kW)",
+          "soc_entity_id": "Encja SoC pojazdu",
+          "target_soc": "Docelowy poziom naładowania (%)",
+          "strategy": "Strategia ładowania",
+          "grid_limit_kw": "Moc przyłączeniowa budynku (kW)"
+        }
+      },
+      "loads_config": {
+        "title": "Odbiorniki odraczalne",
+        "description": "Zarządzaj odbiornikami odraczalnymi. Możesz dodać nowy odbiornik, usunąć istniejący lub zakończyć.",
+        "data": {
+          "action": "Akcja",
+          "load_name": "Nazwa odbiornika",
+          "entity_id": "Encja Home Assistant",
+          "threshold_on": "Próg cenowy włączenia (PLN/kWh)",
+          "threshold_off": "Próg cenowy wyłączenia (PLN/kWh)",
+          "min_daily_hours": "Minimalna dzienna praca (godziny)",
+          "max_daily_hours": "Maksymalna dzienna praca (godziny)",
+          "allowed_start": "Dozwolony start (HH:MM)",
+          "allowed_end": "Dozwolony koniec (HH:MM)",
+          "priority": "Priorytet (1 = najwyższy)",
+          "power_w": "Pobór mocy (W)",
+          "failsafe_state": "Stan awaryjny (włączony)",
+          "remove_index": "Indeks odbiornika do usunięcia"
+        }
+      },
+      "pv_config": {
+        "title": "Konfiguracja PV",
+        "description": "Zaktualizuj parametry fotowoltaiki i magazynu energii. Zmiany zostaną zastosowane bez przeładowania integracji.",
+        "data": {
+          "capacity_kwp": "Moc instalacji PV (kWp)",
+          "battery_capacity_kwh": "Pojemność baterii (kWh)",
+          "min_soc_percent": "Minimalny SoC bezpieczeństwa (%)",
+          "degradation_cost": "Koszt degradacji baterii (PLN/kWh)",
+          "inverter_entity": "Encja inwertera",
+          "battery_soc_entity": "Encja SoC baterii"
+        }
+      }
+    },
+    "error": {
+      "energy_price_invalid": "Nieprawidłowa wartość ceny energii",
+      "energy_price_range": "Cena energii musi być w zakresie 0–5 PLN/kWh",
+      "distribution_variable_invalid": "Nieprawidłowa wartość opłaty dystrybucyjnej",
+      "transition_fee_invalid": "Nieprawidłowa wartość opłaty przejściowej",
+      "oze_fee_invalid": "Nieprawidłowa wartość opłaty OZE",
+      "capacity_fee_invalid": "Nieprawidłowa wartość opłaty mocowej",
+      "cogeneration_fee_invalid": "Nieprawidłowa wartość opłaty kogeneracyjnej",
+      "target_soc_range": "Docelowy SoC musi być w zakresie 10–100%",
+      "target_soc_invalid": "Nieprawidłowa wartość docelowego SoC",
+      "max_charging_power_range": "Moc ładowania musi być w zakresie 0–100 kW",
+      "max_charging_power_invalid": "Nieprawidłowa wartość mocy ładowania",
+      "grid_limit_range": "Moc przyłączeniowa musi być w zakresie 0.1–100 kW",
+      "grid_limit_invalid": "Nieprawidłowa wartość mocy przyłączeniowej",
+      "load_name_required": "Nazwa odbiornika jest wymagana",
+      "entity_id_required": "Encja Home Assistant jest wymagana",
+      "threshold_on_range": "Próg włączenia musi być w zakresie 0–5 PLN/kWh",
+      "threshold_off_range": "Próg wyłączenia musi być w zakresie 0–5 PLN/kWh",
+      "power_w_range": "Pobór mocy musi być w zakresie 1–100000 W",
+      "power_w_invalid": "Nieprawidłowa wartość poboru mocy",
+      "max_loads_reached": "Osiągnięto maksymalną liczbę odbiorników",
+      "remove_index_invalid": "Nieprawidłowy indeks odbiornika",
+      "battery_capacity_range": "Pojemność baterii musi być w zakresie 0–500 kWh",
+      "battery_capacity_invalid": "Nieprawidłowa wartość pojemności baterii",
+      "min_soc_percent_range": "Minimalny SoC bezpieczeństwa musi być w zakresie 5–30%",
+      "min_soc_percent_invalid": "Nieprawidłowa wartość minimalnego SoC",
+      "degradation_cost_range": "Koszt degradacji musi być w zakresie 0–5 PLN/kWh",
+      "degradation_cost_invalid": "Nieprawidłowa wartość kosztu degradacji"
+    }
+  },
+  "selector": {
+    "osd_operator": {
+      "options": {
+        "tauron": "Tauron Dystrybucja",
+        "pge": "PGE Dystrybucja",
+        "enea": "Enea Operator",
+        "energa": "Energa Operator",
+        "innogy_stoen": "innogy Stoen Operator"
+      }
+    },
+    "tariff_type": {
+      "options": {
+        "G11": "G11 (jednolita)",
+        "G12": "G12 (dwustrefowa)",
+        "G12w": "G12w (weekendowa)",
+        "G12r": "G12r (dynamiczna)",
+        "G13": "G13 (trzystrefowa)",
+        "C11": "C11 (jednolita biznesowa)",
+        "C12a": "C12a (dwustrefowa biznesowa A)",
+        "C12b": "C12b (dwustrefowa biznesowa B)",
+        "C21": "C21 (jednolita SN)",
+        "C22a": "C22a (dwustrefowa SN A)",
+        "C22b": "C22b (dwustrefowa SN B)",
+        "C23": "C23 (trzystrefowa SN)"
+      }
+    },
+    "solar_provider": {
+      "options": {
+        "solcast": "Solcast",
+        "forecast_solar": "Forecast.Solar",
+        "openweathermap": "OpenWeatherMap Solar"
+      }
+    },
+    "charging_strategy": {
+      "options": {
+        "najtańsze_okna": "Najtańsze okna (minimalizacja kosztu)",
+        "gotowy_do_godziny": "Gotowy do godziny (deadline)",
+        "tylko_nadwyżka_PV": "Tylko nadwyżka PV"
+      }
+    },
+    "module": {
+      "options": {
+        "tariff_rates": "Stawki taryfowe",
+        "ev_config": "Konfiguracja EV",
+        "loads_config": "Odbiorniki odraczalne",
+        "pv_config": "Konfiguracja PV"
+      }
+    },
+    "loads_action": {
+      "options": {
+        "add": "Dodaj odbiornik",
+        "remove": "Usuń odbiornik",
+        "done": "Zakończ"
+      }
+    }
+  }
+}

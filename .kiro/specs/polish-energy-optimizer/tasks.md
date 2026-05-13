@@ -307,17 +307,17 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Preserve partial configuration on interruption until HA restart
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.7, 7.8, 7.9_
 
-  - [ ] 12.2 Write property test for Config Flow validation (Property 20)
+  - [x] 12.2 Write property test for Config Flow validation (Property 20)
     - **Property 20: Walidacja danych wejściowych Config Flow**
     - **Validates: Requirements 7.3**
 
-  - [ ] 12.3 Implement PEOOptionsFlow
+  - [x] 12.3 Implement PEOOptionsFlow
     - Allow independent reconfiguration of each module (EV, tariff, PV, loads)
     - Add/remove deferrable loads without full reconfiguration
     - Update ConfigEntry.options without requiring integration reload
     - _Requirements: 7.5, 7.6, 8.9_
 
-  - [ ] 12.4 Implement translations (strings.json)
+  - [x] 12.4 Implement translations (strings.json)
     - Create `translations/pl.json` with all Config Flow steps, labels, descriptions, error messages in Polish
     - _Requirements: 7.2_
 
