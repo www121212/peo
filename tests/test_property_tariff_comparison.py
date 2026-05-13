@@ -338,3 +338,92 @@ class TestProperty19TariffComparisonRanking:
             assert result.is_sufficient_data is True
         else:
             assert result.is_sufficient_data is False
+
+    @PROPERTY_TEST_SETTINGS
+    @given(
+        num_days=integers(min_value=1, max_value=6),
+        current_tariff=sampled_from(_COMPARABLE_TARIFFS),
+        operator=sampled_from(list(OSDOperator)),
+    )
+    def test_insufficient_data_no_recommendation(self, num_days, current_tariff, operator):
+        """When data_days < 7, is_sufficient_data=False, recommended == current_tariff,
+        and monthly_savings_pln == 0.
+
+        **Validates: Requirements 6.1, 6.3**
+        """
+        # Build a profile with fewer than 7 days
+        profile: dict[datetime, float] = {}
+        for day_offset in range(num_days):
+            day = 1 + day_offset
+            for hour in range(24):
+                ts = datetime(2024, 1, day, hour, 0)
+                profile[ts] = 1.5  # constant consumption
+
+        loader = TariffDefinitionLoader()
+        calculator = TariffCalculator(loader)
+        analyzer = TariffAnalyzer(calculator, loader)
+
+        result = analyzer.analyze_tariffs(profile, current_tariff, operator)
+
+        assert result.is_sufficient_data is False, (
+            f"Expected is_sufficient_data=False for {num_days} days"
+        )
+        assert result.recommended == current_tariff, (
+            f"With insufficient data, recommended should be current_tariff "
+            f"({current_tariff}), got {result.recommended}"
+        )
+        assert result.monthly_savings_pln == Decimal("0.00"), (
+            f"With insufficient data, savings should be 0, got {result.monthly_savings_pln}"
+        )
+
+    @PROPERTY_TEST_SETTINGS
+    @given(
+        profile=small_consumption_profile_strategy(),
+        tariff=sampled_from(_COMPARABLE_TARIFFS),
+        operator=sampled_from(list(OSDOperator)),
+    )
+    def test_hypothetical_cost_non_negative(self, profile, tariff, operator):
+        """For any non-negative consumption profile, hypothetical_cost is always >= 0.
+
+        **Validates: Requirements 6.1, 6.6**
+        """
+        # Ensure all consumption values are non-negative (strategy guarantees this)
+        assert all(v >= 0 for v in profile.values())
+
+        loader = TariffDefinitionLoader()
+        calculator = TariffCalculator(loader)
+        analyzer = TariffAnalyzer(calculator, loader)
+
+        rates = analyzer._load_all_zone_rates(operator, tariff)
+        assume(rates is not None)
+
+        cost = analyzer.calculate_hypothetical_cost(profile, tariff, operator, rates)
+
+        assert cost >= Decimal("0"), (
+            f"Hypothetical cost should be non-negative, got {cost} "
+            f"for tariff {tariff}, operator {operator}"
+        )
+
+    @PROPERTY_TEST_SETTINGS
+    @given(
+        profile=small_consumption_profile_strategy(),
+        current_tariff=sampled_from(_COMPARABLE_TARIFFS),
+        operator=sampled_from(list(OSDOperator)),
+    )
+    def test_monthly_savings_non_negative_with_sufficient_data(self, profile, current_tariff, operator):
+        """When is_sufficient_data=True, monthly_savings_pln >= 0 (savings are non-negative
+        because they represent the difference between current cost and cheapest cost).
+
+        **Validates: Requirements 6.3**
+        """
+        loader = TariffDefinitionLoader()
+        calculator = TariffCalculator(loader)
+        analyzer = TariffAnalyzer(calculator, loader)
+
+        result = analyzer.analyze_tariffs(profile, current_tariff, operator)
+
+        if result.is_sufficient_data:
+            assert result.monthly_savings_pln >= Decimal("0"), (
+                f"Monthly savings should be non-negative when sufficient data, "
+                f"got {result.monthly_savings_pln}"
+            )

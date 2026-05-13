@@ -22,6 +22,9 @@ _NOTIFICATION_THRESHOLD_PERCENT = Decimal("10.0")
 # Minimum interval between notifications (7 days)
 _NOTIFICATION_COOLDOWN_DAYS = 7
 
+# Notification title (in Polish)
+NOTIFICATION_TITLE = "PEO: Rekomendacja zmiany taryfy"
+
 
 @dataclass
 class TariffRecommendationState:
@@ -32,6 +35,8 @@ class TariffRecommendationState:
     current_tariff: str
     is_sufficient_data: bool
     data_days: int
+    current_monthly_cost_pln: Decimal = Decimal("0.00")
+    recommended_monthly_cost_pln: Decimal = Decimal("0.00")
     last_updated: datetime | None = None
 
 
@@ -77,6 +82,15 @@ class TariffRecommendationNotifier:
         if now is None:
             now = datetime.now()
 
+        # Determine current and recommended monthly costs from rankings
+        current_monthly_cost = Decimal("0.00")
+        recommended_monthly_cost = Decimal("0.00")
+        for ranking in comparison.rankings:
+            if ranking.tariff == comparison.current_tariff:
+                current_monthly_cost = ranking.monthly_cost_pln
+            if ranking.tariff == comparison.recommended:
+                recommended_monthly_cost = ranking.monthly_cost_pln
+
         # Update sensor state
         self._current_state = TariffRecommendationState(
             recommended_tariff=comparison.recommended.value,
@@ -84,6 +98,8 @@ class TariffRecommendationNotifier:
             current_tariff=comparison.current_tariff.value,
             is_sufficient_data=comparison.is_sufficient_data,
             data_days=comparison.data_days,
+            current_monthly_cost_pln=current_monthly_cost,
+            recommended_monthly_cost_pln=recommended_monthly_cost,
             last_updated=now,
         )
 
@@ -189,8 +205,44 @@ class TariffRecommendationNotifier:
         return (
             f"Rekomendacja zmiany taryfy: przejście z {self._current_state.current_tariff} "
             f"na {self._current_state.recommended_tariff} może zaoszczędzić "
-            f"{self._current_state.estimated_monthly_savings_pln:.2f} PLN miesięcznie."
+            f"{self._current_state.estimated_monthly_savings_pln:.2f} PLN miesięcznie. "
+            f"Koszt aktualnej taryfy: {self._current_state.current_monthly_cost_pln:.2f} PLN/mies., "
+            f"koszt rekomendowanej: {self._current_state.recommended_monthly_cost_pln:.2f} PLN/mies."
         )
+
+    @property
+    def notification_title(self) -> str:
+        """Tytuł powiadomienia (w języku polskim)."""
+        return NOTIFICATION_TITLE
+
+    def get_sensor_data(self) -> dict:
+        """Zwróć dane sensora rekomendacji taryfy.
+
+        Returns:
+            Słownik z danymi sensora:
+            - recommended_tariff: wartość TariffType
+            - monthly_savings_pln: Decimal
+            - current_tariff: wartość TariffType
+            - last_analysis_date: ISO timestamp lub None
+        """
+        if self._current_state is None:
+            return {
+                "recommended_tariff": None,
+                "monthly_savings_pln": Decimal("0.00"),
+                "current_tariff": None,
+                "last_analysis_date": None,
+            }
+
+        return {
+            "recommended_tariff": self._current_state.recommended_tariff,
+            "monthly_savings_pln": self._current_state.estimated_monthly_savings_pln,
+            "current_tariff": self._current_state.current_tariff,
+            "last_analysis_date": (
+                self._current_state.last_updated.isoformat()
+                if self._current_state.last_updated
+                else None
+            ),
+        }
 
     def reset_cooldown(self) -> None:
         """Resetuj cooldown powiadomień (np. po zmianie taryfy przez użytkownika)."""

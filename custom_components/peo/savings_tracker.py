@@ -1,19 +1,24 @@
 """Moduł śledzenia oszczędności dla Polish Energy Optimizer (PEO).
 
-Oblicza dzienne i miesięczne oszczędności jako różnicę między kosztem
-bez optymalizacji (baseline) a kosztem rzeczywistym.
+Wyższy poziom abstrakcji integrujący SavingsCalculator z decyzjami
+optymalizacyjnymi ze wszystkich modułów (EV, loads, PV).
 
-Sensory:
-- Dzienne oszczędności (PLN, 2 miejsca po przecinku) — reset o 00:00
-- Miesięczne skumulowane oszczędności (PLN, 2 miejsca po przecinku) — reset 1. dnia miesiąca
+Oblicza oszczędności jako:
+    hypothetical_cost_without_optimization - actual_cost
+
+Po każdej decyzji wywołuje SavingsCalculator.record_optimization_savings().
+
+Requirements: 10.1, 10.2, 10.7
 """
 
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal, ROUND_HALF_UP
+
+from .savings_calculator import SavingsCalculator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -51,35 +56,59 @@ class OptimizationRecord:
 class SavingsTracker:
     """Tracker oszczędności generowanych przez optymalizację PEO.
 
-    Oblicza:
-    - Dzienne oszczędności: różnica między kosztem bez optymalizacji a kosztem
-      rzeczywistym, resetowane codziennie o 00:00.
-    - Miesięczne skumulowane oszczędności: suma dziennych oszczędności w bieżącym
-      miesiącu, resetowane 1. dnia każdego miesiąca o 00:00.
+    Integruje się z decyzjami optymalizacyjnymi ze wszystkich modułów
+    (EV, loads, PV) i deleguje obliczenia do SavingsCalculator.
 
-    Gdy dane cenowe bazowe (baseline) są niedostępne, sensory przyjmują
-    stan "unknown".
+    Oblicza oszczędności jako:
+        hypothetical_cost_without_optimization - actual_cost
+
+    Po każdej decyzji wywołuje SavingsCalculator.record_optimization_savings().
     """
 
-    def __init__(self) -> None:
-        """Inicjalizacja trackera oszczędności."""
-        self._state = SavingsState()
+    def __init__(self, calculator: SavingsCalculator | None = None) -> None:
+        """Inicjalizacja trackera oszczędności.
+
+        Args:
+            calculator: Instancja SavingsCalculator. Jeśli None, tworzy nową.
+        """
+        self._calculator = calculator or SavingsCalculator()
         self._daily_records: list[OptimizationRecord] = []
+        self._last_updated: datetime | None = None
 
     @property
-    def state(self) -> SavingsState:
-        """Aktualny stan sensorów oszczędności."""
-        return self._state
+    def calculator(self) -> SavingsCalculator:
+        """Dostęp do kalkulatora oszczędności."""
+        return self._calculator
 
     @property
     def daily_savings(self) -> Decimal | str:
         """Dzienne oszczędności (PLN, 2dp) lub 'unknown'."""
-        return self._state.daily_savings_pln
+        result = self._calculator.get_daily_savings()
+        if result is None:
+            return STATE_UNKNOWN
+        return result
 
     @property
     def monthly_savings(self) -> Decimal | str:
         """Miesięczne skumulowane oszczędności (PLN, 2dp) lub 'unknown'."""
-        return self._state.monthly_savings_pln
+        result = self._calculator.get_monthly_savings()
+        if result is None:
+            return STATE_UNKNOWN
+        return result
+
+    @property
+    def state(self) -> SavingsState:
+        """Aktualny stan sensorów oszczędności."""
+        daily = self.daily_savings
+        monthly = self.monthly_savings
+        return SavingsState(
+            daily_savings_pln=daily,
+            monthly_savings_pln=monthly,
+            last_reset_date=self._calculator.last_reset_date,
+            last_monthly_reset_date=self._calculator.last_monthly_reset,
+            last_updated=self._last_updated,
+            baseline_available=self._calculator.baseline_available,
+        )
 
     def record_optimization(
         self,
@@ -90,6 +119,9 @@ class SavingsTracker:
         now: datetime | None = None,
     ) -> OptimizationRecord:
         """Zarejestruj decyzję optymalizacyjną i zaktualizuj oszczędności.
+
+        Oblicza oszczędność jako: baseline_cost_pln - actual_cost_pln
+        i wywołuje SavingsCalculator.record_optimization_savings().
 
         Args:
             baseline_cost_pln: Koszt bez optymalizacji (PLN).
@@ -117,12 +149,16 @@ class SavingsTracker:
             )
 
         # Check for daily/monthly reset before recording
-        self._check_resets(now)
+        self._calculator._check_resets(now)
 
-        # Calculate savings for this decision
+        # Calculate savings: hypothetical_cost_without_optimization - actual_cost
         savings = (baseline_cost_pln - actual_cost_pln).quantize(
             _SAVINGS_PRECISION, rounding=ROUND_HALF_UP
         )
+
+        # Delegate to SavingsCalculator
+        self._calculator.record_optimization_savings(savings)
+        self._calculator.set_baseline_available(True)
 
         record = OptimizationRecord(
             timestamp=now,
@@ -134,26 +170,7 @@ class SavingsTracker:
         )
 
         self._daily_records.append(record)
-
-        # Update daily savings
-        if isinstance(self._state.daily_savings_pln, Decimal):
-            self._state.daily_savings_pln = (
-                self._state.daily_savings_pln + savings
-            ).quantize(_SAVINGS_PRECISION, rounding=ROUND_HALF_UP)
-        else:
-            # Was unknown, now we have data
-            self._state.daily_savings_pln = savings
-
-        # Update monthly savings
-        if isinstance(self._state.monthly_savings_pln, Decimal):
-            self._state.monthly_savings_pln = (
-                self._state.monthly_savings_pln + savings
-            ).quantize(_SAVINGS_PRECISION, rounding=ROUND_HALF_UP)
-        else:
-            self._state.monthly_savings_pln = savings
-
-        self._state.last_updated = now
-        self._state.baseline_available = True
+        self._last_updated = now
 
         _LOGGER.debug(
             "Zarejestrowano oszczędność: %.2f PLN (%s: %s). "
@@ -161,8 +178,8 @@ class SavingsTracker:
             savings,
             module,
             description,
-            self._state.daily_savings_pln,
-            self._state.monthly_savings_pln,
+            self.daily_savings,
+            self.monthly_savings,
         )
 
         return record
@@ -179,10 +196,8 @@ class SavingsTracker:
         if now is None:
             now = datetime.now()
 
-        self._state.daily_savings_pln = STATE_UNKNOWN
-        self._state.monthly_savings_pln = STATE_UNKNOWN
-        self._state.baseline_available = False
-        self._state.last_updated = now
+        self._calculator.set_baseline_available(False)
+        self._last_updated = now
 
         _LOGGER.info(
             "Sensory oszczędności oznaczone jako 'unknown' — "
@@ -200,53 +215,14 @@ class SavingsTracker:
         """
         if now is None:
             now = datetime.now()
-        self._check_resets(now)
+        self._calculator._check_resets(now)
 
-    def _check_resets(self, now: datetime) -> None:
-        """Sprawdź czy wymagany jest reset dzienny lub miesięczny.
-
-        Reset dzienny: o 00:00 każdego dnia.
-        Reset miesięczny: o 00:00 pierwszego dnia każdego miesiąca.
-        """
+        # Clear daily records on new day
         today = now.date()
-
-        # Monthly reset: 1st day of month
-        if today.day == 1:
-            if (
-                self._state.last_monthly_reset_date is None
-                or self._state.last_monthly_reset_date < today
-            ):
-                self._reset_monthly(today)
-
-        # Daily reset
-        if (
-            self._state.last_reset_date is None
-            or self._state.last_reset_date < today
-        ):
-            self._reset_daily(today)
-
-    def _reset_daily(self, today: date) -> None:
-        """Reset dziennych oszczędności do 0.00 PLN."""
-        previous = self._state.daily_savings_pln
-        self._state.daily_savings_pln = Decimal("0.00")
-        self._state.last_reset_date = today
-        self._daily_records.clear()
-
-        _LOGGER.info(
-            "Reset dziennych oszczędności (poprzednia wartość: %s PLN)",
-            previous,
-        )
-
-    def _reset_monthly(self, today: date) -> None:
-        """Reset miesięcznych oszczędności do 0.00 PLN."""
-        previous = self._state.monthly_savings_pln
-        self._state.monthly_savings_pln = Decimal("0.00")
-        self._state.last_monthly_reset_date = today
-
-        _LOGGER.info(
-            "Reset miesięcznych oszczędności (poprzednia wartość: %s PLN)",
-            previous,
-        )
+        if self._calculator.last_reset_date == today and self._daily_records:
+            # Check if records are from a previous day
+            if self._daily_records[0].timestamp.date() < today:
+                self._daily_records.clear()
 
     def get_daily_records(self) -> list[OptimizationRecord]:
         """Zwróć listę rekordów optymalizacyjnych z bieżącego dnia."""

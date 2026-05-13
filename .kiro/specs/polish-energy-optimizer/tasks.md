@@ -244,11 +244,11 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Mark results as "niewystarczające dane" if <7 days of data
     - _Requirements: 6.1, 6.2, 6.3, 6.5, 6.6, 6.7_
 
-  - [ ] 9.2 Write property test for tariff comparison (Property 19)
+  - [x] 9.2 Write property test for tariff comparison (Property 19)
     - **Property 19: Porównanie taryf — poprawność obliczeń i rankingu**
     - **Validates: Requirements 6.1, 6.2, 6.3, 6.6**
 
-  - [ ] 9.3 Implement tariff recommendation notifications
+  - [x] 9.3 Implement tariff recommendation notifications
     - Expose sensor: recommended tariff with estimated monthly savings (PLN)
     - Generate notification when difference >10% of monthly cost (max once per 7 days)
     - _Requirements: 6.3, 6.4_
@@ -257,7 +257,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. Implement monitoring and savings tracking
-  - [ ] 11.1 Implement savings calculation sensors
+  - [x] 11.1 Implement savings calculation sensors
     - Daily savings sensor (PLN, 2 decimal places): difference between non-optimized and actual cost, reset at 00:00
     - Monthly cumulative savings sensor (PLN, 2 decimal places): reset on 1st of each month at 00:00
     - Update after each optimization decision
