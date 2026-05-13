@@ -166,7 +166,6 @@ Projekt jest w fazie eksperymentalnej. Zgłaszaj problemy przez [Issues](https:/
 
 ## 👤 Autorzy
 
-- **Specyfikacja i nadzór:** Wojciech Misiaszek
 - **Implementacja:** AI (Claude/Kiro)
 
 *Cały kod, testy i dokumentacja wygenerowane przez AI na podstawie specyfikacji opracowanej wspólnie z użytkownikiem.*
