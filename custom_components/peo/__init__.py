@@ -110,13 +110,19 @@ async def async_setup_entry(
             tariff_type = TariffType.G12
             osd_operator = OSDOperator.TAURON
 
-        # Build rates dict from loader defaults
+        # Build rates dict from loader defaults — load ALL zones for the tariff
         try:
             from .tariff_coordinator import TariffDataCoordinator
-            default_rates = tariff_loader.load_default_rates(osd_operator, tariff_type)
             from .enums import TimeZoneName
-            # Use single zone rates for now (simplified)
-            rates_dict = {TimeZoneName.SINGLE: default_rates}
+            from .tariff_analyzer import TariffAnalyzer
+
+            # Use TariffAnalyzer's helper to load all zone rates
+            analyzer = TariffAnalyzer(tariff_calculator, tariff_loader)
+            rates_dict = analyzer._load_all_zone_rates(osd_operator, tariff_type)
+            if rates_dict is None:
+                # Fallback to single zone
+                default_rates = tariff_loader.load_default_rates(osd_operator, tariff_type)
+                rates_dict = {TimeZoneName.SINGLE: default_rates}
 
             tariff_coordinator = TariffDataCoordinator(
                 hass,

@@ -1,0 +1,125 @@
+start_ev_charging:
+  name: Rozpocznij ładowanie EV
+  description: Rozpoczyna ładowanie pojazdu elektrycznego z podaną mocą.
+  fields:
+    vehicle_id:
+      name: ID pojazdu
+      description: Identyfikator pojazdu do ładowania
+      required: true
+      selector:
+        text:
+    power_kw:
+      name: Moc ładowania (kW)
+      description: Żądana moc ładowania (1.4-22 kW)
+      selector:
+        number:
+          min: 1.4
+          max: 22.0
+          step: 0.1
+          unit_of_measurement: kW
+    target_soc:
+      name: Docelowy SoC (%)
+      description: Docelowy poziom naładowania (10-100%)
+      selector:
+        number:
+          min: 10
+          max: 100
+          step: 1
+          unit_of_measurement: "%"
+
+stop_ev_charging:
+  name: Zatrzymaj ładowanie EV
+  description: Zatrzymuje ładowanie pojazdu elektrycznego.
+  fields:
+    vehicle_id:
+      name: ID pojazdu
+      description: Identyfikator pojazdu do zatrzymania
+      required: true
+      selector:
+        text:
+
+set_load_threshold:
+  name: Ustaw próg cenowy
+  description: Zmienia próg cenowy włączenia odbiornika odraczalnego.
+  fields:
+    load_id:
+      name: ID odbiornika
+      description: Identyfikator odbiornika
+      required: true
+      selector:
+        text:
+    threshold_on:
+      name: Próg włączenia (PLN/kWh)
+      description: Cena poniżej której odbiornik zostanie włączony
+      required: true
+      selector:
+        number:
+          min: 0.01
+          max: 5.0
+          step: 0.01
+          unit_of_measurement: PLN/kWh
+    threshold_off:
+      name: Próg wyłączenia (PLN/kWh)
+      description: Cena powyżej której odbiornik zostanie wyłączony
+      selector:
+        number:
+          min: 0.01
+          max: 5.0
+          step: 0.01
+          unit_of_measurement: PLN/kWh
+
+force_load_on:
+  name: Wymuś włączenie odbiornika
+  description: Wymusza włączenie odbiornika odraczalnego.
+  fields:
+    load_id:
+      name: ID odbiornika
+      description: Identyfikator odbiornika
+      required: true
+      selector:
+        text:
+    duration_minutes:
+      name: Czas trwania (minuty)
+      description: Na ile minut wymusić włączenie (1-1440)
+      selector:
+        number:
+          min: 1
+          max: 1440
+          step: 1
+          unit_of_measurement: min
+
+force_load_off:
+  name: Wymuś wyłączenie odbiornika
+  description: Wymusza wyłączenie odbiornika odraczalnego.
+  fields:
+    load_id:
+      name: ID odbiornika
+      description: Identyfikator odbiornika
+      required: true
+      selector:
+        text:
+    duration_minutes:
+      name: Czas trwania (minuty)
+      description: Na ile minut wymusić wyłączenie (1-1440)
+      selector:
+        number:
+          min: 1
+          max: 1440
+          step: 1
+          unit_of_measurement: min
+
+recalculate_schedule:
+  name: Przelicz harmonogramy
+  description: Przelicza harmonogramy wszystkich modułów na podstawie aktualnych danych.
+  fields:
+    modules:
+      name: Moduły
+      description: Które moduły przeliczyć (domyślnie wszystkie)
+      selector:
+        select:
+          options:
+            - all
+            - ev
+            - loads
+            - pv
+          multiple: true
