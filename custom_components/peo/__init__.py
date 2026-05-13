@@ -65,10 +65,10 @@ async def async_setup_entry(
     listeners: list[Any] = []
 
     # Create shared HTTP session and rate limiter
-    import aiohttp
+    from homeassistant.helpers.aiohttp_client import async_get_clientsession
     from .rate_limiter import RateLimiter
 
-    session = aiohttp.ClientSession()
+    session = async_get_clientsession(hass)
     rate_limiter = RateLimiter()
     runtime_data["http_session"] = session
     runtime_data["rate_limiter"] = rate_limiter
@@ -92,20 +92,42 @@ async def async_setup_entry(
 
     # Tariff module coordinator
     if MODULE_TARIFF in modules_enabled:
-        from .tariff_coordinator import TariffDataCoordinator
         from .tariff_calculator import TariffCalculator
         from .tariff_loader import TariffDefinitionLoader
+        from .enums import TariffType, OSDOperator
 
         tariff_loader = TariffDefinitionLoader()
         tariff_calculator = TariffCalculator(tariff_loader)
-        tariff_coordinator = TariffDataCoordinator(
-            hass,
-            tariff_calculator,
-            entry.data.get(CONF_TARIFF_TYPE, "G12"),
-            entry.data.get(CONF_OSD_OPERATOR, "tauron"),
-            entry.options,
-        )
-        coordinators["tariff"] = tariff_coordinator
+
+        # Load default rates for the configured tariff/operator
+        tariff_type_str = entry.data.get(CONF_TARIFF_TYPE, "G12")
+        osd_operator_str = entry.data.get(CONF_OSD_OPERATOR, "tauron")
+
+        try:
+            tariff_type = TariffType(tariff_type_str)
+            osd_operator = OSDOperator(osd_operator_str)
+        except ValueError:
+            tariff_type = TariffType.G12
+            osd_operator = OSDOperator.TAURON
+
+        # Build rates dict from loader defaults
+        try:
+            from .tariff_coordinator import TariffDataCoordinator
+            default_rates = tariff_loader.load_default_rates(osd_operator, tariff_type)
+            from .enums import TimeZoneName
+            # Use single zone rates for now (simplified)
+            rates_dict = {TimeZoneName.SINGLE: default_rates}
+
+            tariff_coordinator = TariffDataCoordinator(
+                hass,
+                tariff_calculator,
+                tariff_type,
+                osd_operator,
+                rates_dict,
+            )
+            coordinators["tariff"] = tariff_coordinator
+        except Exception as err:
+            _LOGGER.warning("Nie udało się zainicjalizować koordynatora taryf: %s", err)
 
     # PV module coordinator — requires more complex setup, deferred
     # PV coordinator needs battery_config, pv_optimizer, tariff_coordinator
@@ -182,13 +204,8 @@ async def async_unload_entry(
             unsub()
     _LOGGER.debug("Anulowano %d listenerów", len(listeners))
 
-    # Close HTTP sessions (delegate to executor if >100ms)
-    http_session = runtime_data.get("http_session")
-    if http_session and hasattr(http_session, "close"):
-        try:
-            await http_session.close()
-        except Exception as err:  # noqa: BLE001
-            _LOGGER.warning("Błąd zamykania sesji HTTP: %s", err)
+    # Close HTTP sessions — skip if using HA shared session
+    # (async_get_clientsession returns HA-managed session, don't close it)
 
     # Unload platforms
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
@@ -228,7 +245,8 @@ async def async_remove_entry(
 
     for store_key in store_keys:
         try:
-            store = hass.helpers.storage.Store(1, store_key)
+            from homeassistant.helpers.storage import Store
+            store = Store(hass, 1, store_key)
             await store.async_remove()
             _LOGGER.debug("Usunięto magazyn: %s", store_key)
         except Exception as err:  # noqa: BLE001
