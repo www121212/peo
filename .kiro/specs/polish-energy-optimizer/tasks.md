@@ -347,7 +347,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Return `ServiceValidationError` on invalid params without state change
     - _Requirements: 12.1, 12.3, 12.4_
 
-  - [ ] 13.5 Write property tests for services and events (Properties 30, 31)
+  - [x] 13.5 Write property tests for services and events (Properties 30, 31)
     - **Property 30: Zdarzenia HA zawierają wymagane pola**
     - **Property 31: Walidacja parametrów usług HA**
     - **Validates: Requirements 12.2, 12.4**
@@ -358,25 +358,25 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Sensors with attributes: hourly_prices (24h), schedule (JSON), last_updated
     - _Requirements: 12.2, 12.5, 12.6_
 
-  - [ ] 13.7 Write property test for binary sensor (Property 32)
+  - [x] 13.7 Write property test for binary sensor (Property 32)
     - **Property 32: Binary sensor "tanie okno"**
     - **Validates: Requirements 12.5**
 
 - [ ] 14. Implement logging, diagnostics, and credential security
-  - [ ] 14.1 Implement structured logging across all modules
+  - [x] 14.1 Implement structured logging across all modules
     - DEBUG: API communication details, calculation steps
     - INFO: state changes, completed operations
     - WARNING: stale data, retried operations, rate limits
     - ERROR: critical operation failures
     - _Requirements: 8.8_
 
-  - [ ] 14.2 Implement credential encryption and storage
+  - [x] 14.2 Implement credential encryption and storage
     - Use Home Assistant credentials mechanism for API tokens and passwords
     - Store connection data in ConfigEntry.data, runtime params in ConfigEntry.options
     - Ensure Python 3.12+ compatibility
     - _Requirements: 9.7, 8.5, 8.9_
 
-  - [ ] 14.3 Implement multi-vehicle sensor exposure
+  - [x] 14.3 Implement multi-vehicle sensor exposure
     - Separate sensor set per vehicle-charger pair: charging status, planned windows, estimated cost, estimated completion time, allocated power
     - Notify user when charging is deferred due to power constraints
     - _Requirements: 11.5, 11.6_
