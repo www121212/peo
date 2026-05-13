@@ -1,202 +1,172 @@
-# 🇵🇱 Polish Energy Optimizer (PEO)
+# Polish Energy Optimizer (PEO)
 
-**Niestandardowa integracja Home Assistant do optymalizacji kosztów energii na polskim rynku.**
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/v/release/www121212/Polish-Energy-Optimizer?include_prereleases)](https://github.com/www121212/Polish-Energy-Optimizer/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![HA 2024.1+](https://img.shields.io/badge/Home%20Assistant-2024.1+-blue.svg)](https://www.home-assistant.io/)
 
-> ⚠️ **Uwaga:** Ta integracja została w całości zaprojektowana i napisana przez AI (Claude/Kiro) na podstawie specyfikacji przygotowanej wspólnie z użytkownikiem. Kod wymaga przeglądu i testowania w środowisku produkcyjnym przed wdrożeniem.
+> ⚠️ **Projekt eksperymentalny** — integracja zaprojektowana i napisana przez AI (Claude/Kiro). Wymaga testowania w środowisku produkcyjnym.
+
+Kompleksowa integracja Home Assistant do **optymalizacji kosztów energii** na polskim rynku. Łączy ceny spot RCE PSE, polskie taryfy, ładowanie EV, load shifting, optymalizację PV i porównywanie taryf w jednym narzędziu.
 
 ---
 
-## Opis
+## ✨ Funkcje
 
-Polish Energy Optimizer (PEO) to kompleksowa integracja Home Assistant (kompatybilna z HACS), zaprojektowana specjalnie dla polskiego rynku energii. Łączy w jednym narzędziu:
+| Moduł | Opis |
+|-------|------|
+| 📊 **Ceny RCE PSE** | Aktualne i przyszłe ceny spot z Rynku Dnia Następnego |
+| 💰 **Kalkulator taryf** | Pełny koszt kWh z 6 składnikami opłat (G11–G13, C11–C23) |
+| 🚗 **Ładowanie EV** | Optymalizacja kosztów z LP solverem, do 4 pojazdów |
+| ⚡ **Load Shifting** | Automatyczne sterowanie odbiornikami wg progów cenowych |
+| ☀️ **Optymalizator PV** | Strategia baterii, prognoza produkcji, autokonsumpcja |
+| 📈 **Porównanie taryf** | Rekomendacja optymalnej taryfy na podstawie zużycia |
 
-- 📊 **Pobieranie cen spot z RCE PSE** — aktualne i przyszłe ceny energii z Rynku Dnia Następnego
-- 💰 **Pełna obsługa polskich taryf** — G11, G12, G12w, G12r, G13, C11–C23 z uwzględnieniem wszystkich składników opłat i 5 operatorów OSD
-- 🚗 **Inteligentne ładowanie EV** — optymalizacja kosztów z LP solverem, obsługa wielu pojazdów, OCPP/Tesla/Wallbox/OpenEVSE
-- ⚡ **Przesuwanie obciążeń (Load Shifting)** — automatyczne sterowanie odbiornikami odraczalnymi wg progów cenowych
-- ☀️ **Optymalizacja PV + bateria** — strategia pracy magazynu energii, prognoza produkcji, autokonsumpcja
-- 📈 **Porównywanie taryf** — rekomendacja optymalnej taryfy na podstawie rzeczywistego zużycia
+---
 
-## Dlaczego PEO?
+## 📦 Instalacja
 
-Istniejące rozwiązania oferują jedynie fragmentaryczne funkcjonalności:
+### HACS (zalecana)
 
-| Rozwiązanie | Ceny | Taryfy | Sterowanie EV | Load Shifting | PV | UI po polsku |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|
-| RCE PSE | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Energy Hub Poland | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ |
-| EMHASS | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |
-| **PEO** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+1. Otwórz **HACS** → **Integracje** → menu ⋮ → **Repozytoria niestandardowe**
+2. Dodaj URL: `https://github.com/www121212/Polish-Energy-Optimizer`
+3. Zainstaluj **"Polish Energy Optimizer"**
+4. Uruchom ponownie Home Assistant
+5. **Ustawienia** → **Integracje** → **+ Dodaj** → szukaj "Polish Energy Optimizer"
 
-## Obsługiwane taryfy
+### Ręcznie
 
-| Taryfa | Typ | Strefy |
-|--------|-----|--------|
-| G11 | Jednostrefowa | jednolita |
-| G12 | Dwustrefowa | szczyt / pozaszczyt |
-| G12w | Dwustrefowa + weekend | szczyt / pozaszczyt / weekend |
-| G12r | Dynamiczna (RCE) | szczyt / pozaszczyt |
-| G13 | Trzystrefowa | szczyt poranny / szczyt popołudniowy / pozaszczyt |
-| C11–C23 | Biznesowe | różne konfiguracje stref |
+Skopiuj folder `custom_components/peo/` do `/config/custom_components/peo/` i zrestartuj HA.
 
-## Obsługiwani operatorzy OSD
+📖 [Szczegółowa instrukcja instalacji](docs/INSTALLATION.md)
 
-- Tauron Dystrybucja
-- PGE Dystrybucja
-- Enea Operator
-- Energa Operator
-- innogy Stoen Operator
+---
 
-## Wymagania
+## ⚙️ Konfiguracja
 
-- Home Assistant 2024.1.0+
-- Python 3.12+
-- HACS (do instalacji)
+Cała konfiguracja przez interfejs graficzny — **bez YAML**. Kreator prowadzi krok po kroku:
 
-## Instalacja
+1. **Wybór modułów** — co chcesz optymalizować
+2. **Taryfa** — operator OSD + typ taryfy (stawki ładowane automatycznie z URE)
+3. **EV** *(opcjonalnie)* — pojazd, ładowarka, strategia
+4. **Odbiorniki** *(opcjonalnie)* — bojler, pompa ciepła, klimatyzacja
+5. **PV** *(opcjonalnie)* — prognoza solarna, bateria, inwerter
 
-1. Dodaj repozytorium do HACS
-2. Zainstaluj integrację "Polish Energy Optimizer"
-3. Przejdź do Ustawienia → Integracje → Dodaj integrację → "Polish Energy Optimizer"
-4. Postępuj zgodnie z kreatorem konfiguracji (w języku polskim)
+Dostępny **tryb szybkiej konfiguracji** (G12 + EV + bojler CWU) — wystarczy podać encję SoC pojazdu.
 
-## Konfiguracja
+📖 [Szczegółowa dokumentacja konfiguracji](docs/CONFIGURATION.md)
 
-Cała konfiguracja odbywa się przez interfejs graficzny Home Assistant — bez edycji YAML.
+---
 
-### Szybka konfiguracja
+## 🔌 Obsługiwane urządzenia
 
-Tryb "szybkiej konfiguracji" z domyślnymi wartościami: G12 + EV + bojler CWU.
+### Operatorzy OSD
+Tauron · PGE · Enea · Energa · innogy Stoen
 
-### Konfiguracja krok po kroku
+### Taryfy
+G11 · G12 · G12w · G12r · **G13** · C11 · C12a · C12b · C21 · C22a · C22b · C23
 
-1. **Wybór modułów** — które funkcje chcesz aktywować
-2. **Taryfa i OSD** — wybór operatora, taryfy, stawek
-3. **EV** (opcjonalnie) — pojazdy, ładowarki, strategie
-4. **Odbiorniki** (opcjonalnie) — bojler, pompa ciepła, klimatyzacja
-5. **PV** (opcjonalnie) — prognoza solarna, bateria, inwerter
+### Ładowarki EV
+OCPP 1.6/2.0 · Tesla Wall Connector · Wallbox Pulsar · OpenEVSE
 
-## Architektura
+### Inwertery PV
+SolarEdge · Huawei Solar · GoodWe · Fronius · SMA
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   Home Assistant                      │
-├─────────────────────────────────────────────────────┤
-│  PEO Integration                                     │
-│  ┌──────────┐ ┌──────────────┐ ┌────────────────┐  │
-│  │Moduł_Cen │ │Kalkulator    │ │Harmonogramownik│  │
-│  │(RCE PSE) │ │Taryf         │ │EV (LP Solver)  │  │
-│  └──────────┘ └──────────────┘ └────────────────┘  │
-│  ┌──────────┐ ┌──────────────┐ ┌────────────────┐  │
-│  │Menedżer  │ │Optymalizator │ │Analizator      │  │
-│  │Obciążeń  │ │PV + Bateria  │ │Taryf           │  │
-│  └──────────┘ └──────────────┘ └────────────────┘  │
-├─────────────────────────────────────────────────────┤
-│  Event Bus: peo_prices_updated, peo_schedule_updated │
-└─────────────────────────────────────────────────────┘
-```
+### Prognozy solarne
+Solcast · Forecast.Solar · OpenWeatherMap Solar
 
-## Sensory i encje
+---
 
-### Sensory cenowe
-- `sensor.peo_current_price` — bieżąca cena PLN/kWh
-- `sensor.peo_daily_min_price` — minimalna cena dnia
-- `sensor.peo_daily_max_price` — maksymalna cena dnia
-- `sensor.peo_daily_avg_price` — średnia cena dnia
+## 📊 Encje
 
-### Sensory taryfowe
-- `sensor.peo_current_cost` — bieżący koszt PLN/kWh (z wszystkimi opłatami)
-- `sensor.peo_current_zone` — aktywna strefa taryfowa
-
-### Sensory EV
-- `sensor.peo_ev_schedule` — harmonogram ładowania
-- `sensor.peo_ev_estimated_cost` — szacowany koszt sesji
-
-### Sensory PV
-- `sensor.peo_pv_forecast_today` — prognoza produkcji PV (kWh)
-- `sensor.peo_battery_mode` — rekomendowany tryb baterii
-- `sensor.peo_estimated_savings` — szacowane dzienne oszczędności
+### Sensory
+| Encja | Opis |
+|-------|------|
+| `sensor.peo_current_price` | Bieżąca cena RCE (PLN/kWh) |
+| `sensor.peo_current_cost` | Pełny koszt z opłatami (PLN/kWh) |
+| `sensor.peo_daily_savings` | Dzienne oszczędności (PLN) |
+| `sensor.peo_monthly_savings` | Miesięczne oszczędności (PLN) |
+| `sensor.peo_pv_forecast_today` | Prognoza PV na dziś (kWh) |
+| `sensor.peo_recommended_tariff` | Rekomendowana taryfa |
 
 ### Binary sensory
-- `binary_sensor.peo_cheap_window` — czy trwa tanie okno
-- `binary_sensor.peo_ev_charging` — czy EV się ładuje
-- `binary_sensor.peo_pv_surplus` — czy jest nadwyżka PV
+| Encja | ON gdy... |
+|-------|-----------|
+| `binary_sensor.peo_cheap_window` | Cena < skonfigurowany próg |
+| `binary_sensor.peo_ev_charging_active` | Trwa ładowanie EV |
+| `binary_sensor.peo_pv_surplus_active` | Produkcja PV > zużycie |
 
-## Usługi (Services)
-
-- `peo.start_ev_charging` — rozpocznij ładowanie EV
-- `peo.stop_ev_charging` — zatrzymaj ładowanie EV
-- `peo.set_load_threshold` — ustaw próg cenowy odbiornika
-- `peo.force_load_on` / `peo.force_load_off` — wymuś stan odbiornika
-- `peo.recalculate_schedule` — przelicz harmonogramy
-
-## Zdarzenia (Events)
-
-- `peo_prices_updated` — nowe ceny pobrane
-- `peo_charging_started` / `peo_charging_completed` — sesja ładowania
-- `peo_load_shifted` — przesunięcie obciążenia
-- `peo_price_threshold_crossed` — przekroczenie progu cenowego
-- `peo_schedule_updated` — harmonogram zaktualizowany
-
-## Bezpieczeństwo
-
-- 🔒 Mechanizm failsafe (heartbeat 60s, timeout 5min)
-- 🌡️ Monitoring temperatury baterii EV
-- ⚡ Respektowanie limitów mocy przyłączeniowej
-- 🔄 Retry logic (3 próby, 10s interwały) dla komend sterujących
-- 🔐 Szyfrowanie danych uwierzytelniających (HA credentials)
-- 📊 Rate limiting API (60 req/h per endpoint)
-
-## Technologia
-
-- Python 3.12+ z asyncio
-- scipy.optimize.linprog (LP solver)
-- aiohttp (klient HTTP)
-- Hypothesis (property-based testing)
-- Home Assistant DataUpdateCoordinator pattern
-- Event-driven architecture (HA Event Bus)
-
-## Status projektu
-
-🚧 **W trakcie rozwoju** — integracja jest w fazie implementacji.
-
-Zaimplementowane moduły:
-- [x] Infrastruktura (modele, stałe, walidatory)
-- [x] Moduł cen (RCE API, walidacja, historia, koordynator)
-- [x] Kalkulator taryf (strefy, koszty, koordynator)
-- [x] Harmonogramownik EV (LP solver, adaptery, sesje, bezpieczeństwo)
-- [x] Menedżer obciążeń (progi, runtime, budżet mocy)
-- [x] Optymalizator PV (nadwyżka, strategia baterii, koordynator)
-- [x] Analizator taryf (porównanie, ranking, rekomendacje)
-- [ ] Monitoring i oszczędności
-- [ ] Config Flow i Options Flow
-- [ ] Cykl życia integracji HA
-- [ ] Usługi i zdarzenia HA
-- [ ] Logowanie i diagnostyka
-
-## Testy
-
-Projekt wykorzystuje property-based testing (Hypothesis) do weryfikacji poprawności:
-
-- 32 właściwości (properties) zdefiniowane w specyfikacji
-- 600+ testów jednostkowych i PBT
-- Pokrycie wszystkich modułów biznesowych
-
-```bash
-# Uruchomienie testów
-pip install pytest pytest-asyncio hypothesis scipy aiohttp
-pytest tests/ -v
+### Usługi
+```yaml
+peo.start_ev_charging      # Rozpocznij ładowanie EV
+peo.stop_ev_charging       # Zatrzymaj ładowanie EV
+peo.set_load_threshold     # Zmień próg cenowy odbiornika
+peo.force_load_on          # Wymuś włączenie odbiornika
+peo.force_load_off         # Wymuś wyłączenie odbiornika
+peo.recalculate_schedule   # Przelicz wszystkie harmonogramy
 ```
 
-## Licencja
-
-MIT
-
-## Autorzy
-
-- Specyfikacja i nadzór: Wojciech Misiaszek
-- Implementacja: AI (Claude/Kiro) — kod wygenerowany automatycznie na podstawie specyfikacji
+📖 [Pełna dokumentacja użytkowania](docs/USAGE.md)
 
 ---
 
-*Ta integracja została stworzona jako eksperyment w AI-assisted development. Cały kod źródłowy, testy i dokumentacja zostały wygenerowane przez AI na podstawie wymagań i designu opracowanych wspólnie z użytkownikiem.*
+## 🔒 Bezpieczeństwo
+
+- **Failsafe** — heartbeat co 60s, przełączenie w tryb domyślny po 5 min bez odpowiedzi
+- **Limity mocy** — nigdy nie przekracza mocy przyłączeniowej ani limitów ładowarki
+- **Temperatura EV** — pauza ładowania przy przegrzaniu baterii
+- **Rate limiting** — max 60 żądań/h per endpoint API
+- **Szyfrowanie** — dane uwierzytelniające przez mechanizm HA credentials
+
+---
+
+## 🏗️ Architektura
+
+```
+┌─────────────────────────────────────────────────┐
+│              Home Assistant Event Bus             │
+├─────────────────────────────────────────────────┤
+│  Moduł Cen  │ Kalkulator │ Harmonogramownik EV  │
+│  (RCE PSE)  │   Taryf    │   (LP Solver)        │
+├─────────────┼────────────┼──────────────────────┤
+│  Menedżer   │Optymalizator│   Analizator        │
+│  Obciążeń   │  PV+Bateria │    Taryf           │
+└─────────────────────────────────────────────────┘
+```
+
+- Modularna architektura z niezależnymi `DataUpdateCoordinator`
+- Komunikacja event-driven (brak zależności cyklicznych)
+- LP solver (`scipy.optimize.linprog`) do optymalizacji harmonogramów
+- Property-based testing (Hypothesis) — 32 właściwości, 800+ testów
+
+---
+
+## 📖 Dokumentacja
+
+| Dokument | Opis |
+|----------|------|
+| [Instalacja](docs/INSTALLATION.md) | Krok po kroku: HACS, ręcznie, weryfikacja |
+| [Konfiguracja](docs/CONFIGURATION.md) | Każdy parametr Config Flow z przykładami |
+| [Użytkowanie](docs/USAGE.md) | Codzienne działanie, automatyzacje, FAQ |
+
+---
+
+## 🤝 Wkład
+
+Projekt jest w fazie eksperymentalnej. Zgłaszaj problemy przez [Issues](https://github.com/www121212/Polish-Energy-Optimizer/issues).
+
+---
+
+## 📄 Licencja
+
+[MIT](LICENSE)
+
+---
+
+## 👤 Autorzy
+
+- **Specyfikacja i nadzór:** Wojciech Misiaszek
+- **Implementacja:** AI (Claude/Kiro)
+
+*Cały kod, testy i dokumentacja wygenerowane przez AI na podstawie specyfikacji opracowanej wspólnie z użytkownikiem.*
