@@ -264,11 +264,11 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Mark as "unknown" when baseline price data unavailable
     - _Requirements: 10.1, 10.2, 10.7_
 
-  - [ ] 11.2 Write property test for savings calculation (Property 24)
+  - [x] 11.2 Write property test for savings calculation (Property 24)
     - **Property 24: Obliczanie oszczędności**
     - **Validates: Requirements 10.1, 10.2**
 
-  - [ ] 11.3 Implement ChargingSession logging
+  - [x] 11.3 Implement ChargingSession logging
     - Record completed sessions: duration (min), energy (kWh, 2dp), actual cost (PLN, 2dp), hypothetical cost (PLN, 2dp)
     - Store max 1000 sessions in persistent storage
     - _Requirements: 10.3_
@@ -277,7 +277,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - **Property 25: Rejestracja sesji ładowania EV**
     - **Validates: Requirements 10.3**
 
-  - [ ] 11.5 Implement load runtime tracking sensor
+  - [x] 11.5 Implement load runtime tracking sensor
     - Sensor per load: daily hours worked (0.1h resolution), reset at 00:00
     - _Requirements: 10.4_
 
@@ -285,7 +285,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - **Property 26: Śledzenie czasu pracy odbiorników**
     - **Validates: Requirements 10.4**
 
-  - [ ] 11.7 Implement optimization decision log
+  - [x] 11.7 Implement optimization decision log
     - Diagnostic attribute with last 10 decisions: timestamp (ISO 8601), decision, reason, savings (PLN, 2dp)
     - Generate notification when monthly savings exceed 50 PLN (max once per calendar month)
     - _Requirements: 10.5, 10.6, 10.8_
