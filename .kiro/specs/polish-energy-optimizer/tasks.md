@@ -273,7 +273,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Store max 1000 sessions in persistent storage
     - _Requirements: 10.3_
 
-  - [ ] 11.4 Write property test for session logging (Property 25)
+  - [x] 11.4 Write property test for session logging (Property 25)
     - **Property 25: Rejestracja sesji ładowania EV**
     - **Validates: Requirements 10.3**
 
@@ -281,7 +281,7 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Sensor per load: daily hours worked (0.1h resolution), reset at 00:00
     - _Requirements: 10.4_
 
-  - [ ] 11.6 Write property test for runtime tracking (Property 26)
+  - [x] 11.6 Write property test for runtime tracking (Property 26)
     - **Property 26: Śledzenie czasu pracy odbiorników**
     - **Validates: Requirements 10.4**
 
@@ -290,12 +290,12 @@ This implementation plan breaks down the PEO Home Assistant integration into inc
     - Generate notification when monthly savings exceed 50 PLN (max once per calendar month)
     - _Requirements: 10.5, 10.6, 10.8_
 
-  - [ ] 11.8 Write property test for decision log (Property 27)
+  - [x] 11.8 Write property test for decision log (Property 27)
     - **Property 27: Bufor ostatnich 10 decyzji optymalizacyjnych**
     - **Validates: Requirements 10.5**
 
 - [ ] 12. Implement Config Flow and Options Flow
-  - [ ] 12.1 Implement PEOConfigFlow (multi-step)
+  - [x] 12.1 Implement PEOConfigFlow (multi-step)
     - Step 1: Module selection (at least one required)
     - Step 2: Tariff configuration (OSD operator, tariff type, rates)
     - Step 3: EV configuration (optional — vehicles, chargers)
