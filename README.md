@@ -1,7 +1,7 @@
 # Polish Energy Optimizer (PEO)
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/www121212/Polish-Energy-Optimizer?include_prereleases)](https://github.com/www121212/Polish-Energy-Optimizer/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/www121212/peo?include_prereleases)](https://github.com/www121212/peo/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![HA 2024.1+](https://img.shields.io/badge/Home%20Assistant-2024.1+-blue.svg)](https://www.home-assistant.io/)
@@ -30,7 +30,7 @@ Kompleksowa integracja Home Assistant do **optymalizacji kosztów energii** na p
 ### HACS (zalecana)
 
 1. Otwórz **HACS** → **Integracje** → menu ⋮ → **Repozytoria niestandardowe**
-2. Dodaj URL: `https://github.com/www121212/Polish-Energy-Optimizer`
+2. Dodaj URL: `https://github.com/www121212/peo`
 3. Zainstaluj **"Polish Energy Optimizer"**
 4. Uruchom ponownie Home Assistant
 5. **Ustawienia** → **Integracje** → **+ Dodaj** → szukaj "Polish Energy Optimizer"
@@ -154,7 +154,7 @@ peo.recalculate_schedule   # Przelicz wszystkie harmonogramy
 
 ## 🤝 Wkład
 
-Projekt jest w fazie eksperymentalnej. Zgłaszaj problemy przez [Issues](https://github.com/www121212/Polish-Energy-Optimizer/issues).
+Projekt jest w fazie eksperymentalnej. Zgłaszaj problemy przez [Issues](https://github.com/www121212/peo/issues).
 
 ---
 

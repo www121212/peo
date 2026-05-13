@@ -15,7 +15,7 @@
 2. Kliknij menu (⋮) w prawym górnym rogu → **Repozytoria niestandardowe**
 3. Wklej URL repozytorium:
    ```
-   https://github.com/www121212/Polish-Energy-Optimizer
+   https://github.com/www121212/peo
    ```
 4. Kategoria: **Integracja**
 5. Kliknij **Dodaj**
@@ -40,7 +40,7 @@
 
 ```bash
 cd /config/custom_components/
-git clone https://github.com/www121212/Polish-Energy-Optimizer.git peo_temp
+git clone https://github.com/www121212/peo.git peo_temp
 mv peo_temp/custom_components/peo ./peo
 rm -rf peo_temp
 ```
